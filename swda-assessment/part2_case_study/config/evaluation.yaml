@@ -1,0 +1,21 @@
+golden_dir: evals/golden
+baseline_path: evals/baselines/baseline.json
+regression:
+  fail_on_card_fingerprint_change: true
+  higher_is_better:
+  - first_attempt_validity_min
+  - final_validity_min
+  - cards
+  - quarantined
+  - boundary_violations
+  - tool_denied
+  max_metric_drop: 0.0
+  lower_is_better:
+  - cost_units
+  max_cost_increase_ratio: 0.1
+fixed_clock: '2026-01-01T00:00:00+00:00'
+scenarios:
+- baseline
+- adversarial
+- limits_cost
+- no_provider

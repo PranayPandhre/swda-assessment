@@ -1,0 +1,60 @@
+agents:
+- agent_id: service-recommendation-agent
+  version: 1.0.0
+  description: Classifies a service request and recommends relevant programmes (deterministic
+    tools only).
+  owner: product-team-a
+  status: approved
+  risk_tier: medium
+  data_classification: restricted
+  entrypoint: swda_agent_gateway.agents.service_recommendation:build_agent
+  agent_config: config/agents/service_recommendation.yaml
+  allowed_tools:
+  - classify_request
+  - search_programmes
+  - rank_programmes
+  required_scopes:
+  - agent:service-recommendation-agent:invoke
+  approvals:
+  - role: security
+    approver: sec-reviewer-1
+    at: '2026-11-02T09:00:00Z'
+    evidence: SEC-1042
+  - role: data_governance
+    approver: dg-reviewer-1
+    at: '2026-11-02T10:30:00Z'
+    evidence: DG-0877
+  - role: product_owner
+    approver: po-1
+    at: '2026-11-03T08:15:00Z'
+    evidence: PO-0311
+  eval_gate:
+    passed: true
+    run_id: gate-2026-11-03-01
+  manifest_sha256: 96d962f2604fff239b4eed969c6a1037401a03f24b4dc99b0a07292481824e4e
+- agent_id: experimental-triage-agent
+  version: 0.1.0
+  description: Draft agent - must never be exposed.
+  owner: product-team-b
+  status: draft
+  risk_tier: high
+  data_classification: restricted
+  entrypoint: swda_agent_gateway.agents.service_recommendation:build_agent
+  agent_config: config/agents/service_recommendation.yaml
+  allowed_tools:
+  - classify_request
+  required_scopes:
+  - agent:experimental-triage-agent:invoke
+  approvals: []
+  eval_gate:
+    passed: false
+    run_id: null
+  manifest_sha256: 60e7c77d8e9ae8ead6bea14566f49a0389c1212b1b0b29ec76ababee42557397
+approval_policy:
+  required_roles:
+  - security
+  - data_governance
+  - product_owner
+  min_distinct_approvers: 3
+  owner_cannot_approve: true
+  require_eval_gate: true

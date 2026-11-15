@@ -1,0 +1,272 @@
+# Scripted scenario for the mock LLM. Each entry is the response an agent 'gives' at (round, attempt).
+# Attempts > 0 are retries after a validation failure. A string attempt simulates malformed output.
+name: baseline
+description: 'Happy path: three actors build four candidate patterns (known/variation/new; collusion and single-actor).'
+scripts:
+  trainee:
+  - round: 1
+    attempts:
+    - actor: trainee
+      round: 1
+      contributions:
+      - pattern_key: P1
+        pattern_title: Credit encashment with inducement and falsified attendance
+        capability: claim_without_attendance
+        summary: Trainee considers claiming credits without attending after being told attendance is optional.
+        basis: source
+        source_refs:
+        - MO-03
+        - S3
+        assumption_ids: []
+        essential: true
+        benefits:
+        - to: trainee
+          kind: cash_reward
+        flows: []
+      messages:
+      - to: training_provider
+        content: Is attendance really needed for the credits to be used?
+      assumptions: []
+      tool_calls:
+      - tool: lookup_source
+        args:
+          id: S3
+      done: false
+  - round: 2
+    attempts:
+    - actor: trainee
+      round: 2
+      contributions:
+      - pattern_key: P2
+        capability: course_only_hire_participation
+        summary: A hired trainee attends the course as the main duty.
+        basis: simulated
+        source_refs:
+        - MO-06
+        assumption_ids: []
+        essential: true
+        benefits:
+        - to: trainee
+          kind: credit_value
+        flows: []
+      messages: []
+      assumptions: []
+      tool_calls: []
+      done: false
+  training_provider:
+  - round: 1
+    attempts:
+    - actor: training_provider
+      round: 1
+      contributions:
+      - pattern_key: P1
+        capability: attendance_falsified
+        summary: Provider records attendance for sessions that did not run so the claim stays valid.
+        basis: source
+        source_refs:
+        - MO-05
+        assumption_ids: []
+        essential: true
+        benefits:
+        - to: training_provider
+          kind: grant_funds
+        flows: []
+      - pattern_key: P1
+        capability: cash_inducement
+        summary: A marketing representative acting for the provider offers a reward to use credits.
+        basis: source
+        source_refs:
+        - MO-04
+        - S3
+        assumption_ids:
+        - A1
+        essential: true
+        benefits: []
+        flows:
+        - from: training_provider
+          to: trainee
+          kind: cash
+      - pattern_key: P1
+        capability: attendance_optional_messaging
+        summary: The representative implies attendance is optional.
+        basis: source
+        source_refs:
+        - MO-04
+        assumption_ids: []
+        essential: false
+        benefits: []
+        flows: []
+      - pattern_key: P3
+        pattern_title: Provider overclaiming training delivered
+        capability: overclaimed_training
+        summary: Provider claims more participants or hours than were delivered.
+        basis: source
+        source_refs:
+        - MO-07
+        - S4
+        assumption_ids: []
+        essential: true
+        benefits:
+        - to: training_provider
+          kind: grant_funds
+        flows: []
+      messages:
+      - to: employer
+        content: Open to sponsored enrolments if fees are covered.
+      assumptions:
+      - id: A1
+        text: The marketing agent in S3 acts on behalf of the provider; Annex B does not say who the agent works for.
+      tool_calls: []
+      done: false
+  - round: 2
+    attempts:
+    - actor: training_provider
+      round: 2
+      contributions:
+      - pattern_key: P2
+        capability: value_return_via_provider
+        summary: Value returns to the sponsor via the provider after the fee is received.
+        basis: assumption
+        source_refs:
+        - MO-08
+        assumption_ids:
+        - A2
+        essential: true
+        benefits: []
+        flows:
+        - from: training_provider
+          to: employer
+          kind: grant_funds
+      - pattern_key: P4
+        pattern_title: Bundled course misdirection with reciprocal referrals
+        capability: misleading_course_bundling
+        summary: Provider only sells the short course inside a longer bundle.
+        basis: source
+        source_refs:
+        - S1
+        - S2
+        assumption_ids: []
+        essential: true
+        benefits:
+        - to: training_provider
+          kind: fee_revenue
+        flows: []
+      messages: []
+      assumptions:
+      - id: A2
+        text: Annex A lists MO-08 as a policy risk, not an observed case; the return path is hypothesised.
+      tool_calls: []
+      done: false
+  employer:
+  - round: 1
+    attempts:
+    - actor: employer
+      round: 1
+      contributions:
+      - pattern_key: P2
+        pattern_title: Sponsor-funded sham employment with value return
+        capability: sham_employment
+        summary: Employer hires individuals mainly so they can attend a funded course.
+        basis: source
+        source_refs:
+        - MO-06
+        assumption_ids: []
+        essential: true
+        benefits:
+        - to: employer
+          kind: reduced_cost
+        flows: []
+      - pattern_key: P2
+        capability: post_course_termination
+        summary: Employment ends soon after the course finishes.
+        basis: source
+        source_refs:
+        - MO-06
+        assumption_ids: []
+        essential: true
+        benefits: []
+        flows: []
+      - pattern_key: P2
+        capability: sponsor_fee_payment
+        summary: Employer acts as sponsor and pays the nett fee.
+        basis: source
+        source_refs:
+        - MO-08
+        assumption_ids: []
+        essential: true
+        benefits: []
+        flows:
+        - from: employer
+          to: training_provider
+          kind: fee
+      messages: []
+      assumptions: []
+      tool_calls: []
+      done: false
+  - round: 2
+    attempts:
+    - actor: employer
+      round: 2
+      contributions:
+      - pattern_key: P4
+        capability: reciprocal_referral
+        summary: Employer refers staff to the provider in return for referrals back.
+        basis: assumption
+        source_refs: []
+        assumption_ids:
+        - A1
+        essential: true
+        benefits: []
+        flows:
+        - from: employer
+          to: training_provider
+          kind: information
+      messages: []
+      assumptions:
+      - id: A1
+        text: No annex source describes employer-provider referral arrangements; hypothesised from the simulation incentives.
+      tool_calls: []
+      done: false
+  review:
+  - round: 0
+    attempts:
+    - reviews:
+      - pattern_key: P1
+        reference_comment: All cited ids resolve; S3 is an unverified complaint and carries the inducement element.
+        assumption_comment: A1 (agent works for the provider) is not stated in S3.
+        source_support_opinion: strong
+        closest_mo_opinion: MO-04
+        counter_evidence_refs: []
+        concerns:
+        - Reward element rests on a single unverified complaint (S3).
+        recommendation: recommend_human_approval
+      - pattern_key: P2
+        reference_comment: All cited ids resolve.
+        assumption_comment: 'A2: the value-return path is hypothesised.'
+        source_support_opinion: strong
+        closest_mo_opinion: MO-06
+        counter_evidence_refs: []
+        concerns:
+        - MO-08 is a policy risk, not an observed case.
+        recommendation: recommend_human_approval
+      - pattern_key: P3
+        reference_comment: All cited ids resolve.
+        assumption_comment: None declared.
+        source_support_opinion: moderate
+        closest_mo_opinion: MO-07
+        counter_evidence_refs:
+        - S5
+        concerns:
+        - S4 is about grading leniency and only indirectly supports over-claiming.
+        recommendation: needs_more_evidence
+      - pattern_key: P4
+        reference_comment: All cited ids resolve.
+        assumption_comment: The referral element is an assumption.
+        source_support_opinion: weak
+        closest_mo_opinion: null
+        counter_evidence_refs:
+        - S5
+        concerns:
+        - Both cited sources are unverified consumer complaints.
+        recommendation: needs_more_evidence
+      tool_calls: []

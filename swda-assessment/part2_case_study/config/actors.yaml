@@ -1,0 +1,35 @@
+# Actor profiles. Goals/capabilities/visibility are DATA: enforcement happens in code (tools.py, validation.py).
+actors:
+  trainee:
+    agent_id: "agent:trainee"
+    title: Trainee Agent
+    goals: ["Maximise personal benefit from subsidised training credits", "Minimise effort and personal cost"]
+    incentives: "Short-term personal gain; limited visibility of how providers and employers operate."
+    capabilities: [claim_without_attendance, course_only_hire_participation]
+    visible_sources: [S1, S2, S3]
+    visible_mos: [MO-03, MO-04, MO-06]
+    tools: [lookup_source, lookup_mo]
+  training_provider:
+    agent_id: "agent:training_provider"
+    title: Training Provider Agent
+    goals: ["Maximise enrolment and claimed funding", "Avoid audit findings"]
+    incentives: "Revenue per claimed participant; reputational and audit exposure."
+    capabilities: [attendance_falsified, cash_inducement, attendance_optional_messaging, overclaimed_training, value_return_via_provider, misleading_course_bundling]
+    visible_sources: [S1, S2, S3, S4, S5]
+    visible_mos: [MO-02, MO-04, MO-05, MO-07, MO-08]
+    tools: [lookup_source, lookup_mo]
+  employer:
+    agent_id: "agent:employer"
+    title: Employer Agent
+    goals: ["Reduce net training and hiring cost", "Access grants or sponsorship benefits"]
+    incentives: "Grant offsets against payroll/training cost; compliance exposure."
+    capabilities: [sham_employment, post_course_termination, sponsor_fee_payment, reciprocal_referral, dormant_entity_use]
+    visible_sources: [S5]
+    visible_mos: [MO-01, MO-06, MO-08]
+    tools: [lookup_source, lookup_mo]
+review_agent:
+  agent_id: "agent:review"
+  title: Review Agent
+  visible_sources: all
+  visible_mos: all
+  tools: [lookup_source, lookup_mo]      # note: no approval tool exists for any agent

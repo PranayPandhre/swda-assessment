@@ -1,0 +1,7 @@
+# STAND-IN for a human reviewer, used so `make demo-p2` is non-interactive. In real use run:
+#   collusion-sim review --run-dir outputs/<run>
+# and decide interactively. P4 is deliberately left undecided to show a card staying pending.
+decisions:
+  - {card: P1, decision: approve, reviewer: "human:j.tan", notes: "Variation of MO-03/04/05; reward element rests on one unverified complaint, so use for hypothesis testing only."}
+  - {card: P2, decision: request_changes, reviewer: "human:j.tan", notes: "MO-08 is a policy risk; reviewer opinion (strong) disagrees with computed support (moderate). Re-run with more evidence."}
+  - {card: P3, decision: reject, reviewer: "human:j.tan", notes: "Single-actor misconduct; out of scope for collusion review. Route to the provider-audit team."}

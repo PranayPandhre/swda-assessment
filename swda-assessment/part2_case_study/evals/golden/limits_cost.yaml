@@ -1,0 +1,18 @@
+scenario: limits_cost
+status: halted:cost_limit
+cards:
+  P1:
+    classification: collusion
+    blocking_issues:
+    - not_reviewed
+    - run_halted:cost_limit
+  P3:
+    classification: single_actor_misconduct
+    blocking_issues:
+    - not_reviewed
+    - run_halted:cost_limit
+counts:
+  rounds_executed:
+    max: 1
+  llm_calls:
+    max: 3

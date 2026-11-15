@@ -1,0 +1,125 @@
+{
+  "card_id": "baseline-20261113151422:P3",
+  "run_id": "baseline-20261113151422",
+  "pattern_key": "P3",
+  "title": "Provider overclaiming training delivered",
+  "status": "rejected",
+  "disclaimer": "Simulated risk pattern for human review. It is a hypothesis generated from synthetic agent behaviour and untrusted annex text; it is not evidence that any real person or organisation did anything.",
+  "actors": [
+    {
+      "actor": "training_provider",
+      "title": "Training Provider Agent",
+      "goals": [
+        "Maximise enrolment and claimed funding",
+        "Avoid audit findings"
+      ],
+      "contributed_capabilities": [
+        "overclaimed_training"
+      ]
+    }
+  ],
+  "collusion_classification": "single_actor_misconduct",
+  "classification_basis": "only training_provider contributes",
+  "benefits": [
+    {
+      "to": "training_provider",
+      "kind": "grant_funds"
+    }
+  ],
+  "flows": [],
+  "simulated_behaviour": [
+    {
+      "actor": "training_provider",
+      "round": 1,
+      "capability": "overclaimed_training",
+      "capability_label": "Claims exceed training delivered",
+      "summary": "Provider claims more participants or hours than were delivered.",
+      "basis": "source",
+      "essential": true,
+      "source_refs": [
+        "MO-07",
+        "S4"
+      ],
+      "assumption_ids": [],
+      "label": "SIMULATED - not a finding of fact"
+    }
+  ],
+  "source_material": [
+    {
+      "id": "MO-07",
+      "kind": "annex_a_mo",
+      "basis": "Observed overseas",
+      "text": "Overclaimed training: Claims exceed the training or attendance actually delivered"
+    },
+    {
+      "id": "S4",
+      "kind": "annex_b_excerpt",
+      "basis": "Unverified social media",
+      "text": "Nobody in my class ever fails. Feels like providers just pass everyone to keep the funding."
+    }
+  ],
+  "assumptions": [],
+  "removal_checks": [
+    {
+      "removed_actor": "training_provider",
+      "pattern_survives": false,
+      "missing_capabilities": [
+        "overclaimed_training"
+      ]
+    }
+  ],
+  "sufficient_single_actors": [
+    "training_provider"
+  ],
+  "mo_classification": {
+    "mo_class": "known",
+    "closest_mo": "MO-07",
+    "similarity": 1.0,
+    "matched_mos": [
+      "MO-07"
+    ],
+    "novel_capabilities": []
+  },
+  "data_needed_for_testing": [
+    {
+      "dataset": "Claimed hours/participants vs. delivered session records",
+      "test": "Claim-to-delivery ratio by provider and course",
+      "because": "capability:overclaimed_training"
+    }
+  ],
+  "review": {
+    "reviewed": true,
+    "references_valid": true,
+    "unsupported_contributions": 0,
+    "source_support": "moderate",
+    "source_support_score": 3.0,
+    "agent_source_support_opinion": "moderate",
+    "support_disagreement": false,
+    "agent_closest_mo_opinion": "MO-07",
+    "mo_disagreement": false,
+    "counter_evidence_refs": [
+      "S5"
+    ],
+    "concerns": [
+      "S4 is about grading leniency and only indirectly supports over-claiming."
+    ],
+    "agent_recommendation": "needs_more_evidence"
+  },
+  "safety": {
+    "quarantined_items_in_run": 0,
+    "pattern_items_quarantined": 0,
+    "run_halt_reason": null
+  },
+  "blocking_issues": [],
+  "trace_seqs": [
+    8
+  ],
+  "approval": {
+    "decision": "reject",
+    "reviewer": "human:j.tan",
+    "notes": "Single-actor misconduct; out of scope for collusion review. Route to the provider-audit team.",
+    "channel": "decisions_file",
+    "decided_at": "2026-11-13T15:14:22+00:00",
+    "card_digest": "a32834c055ab20b5ec3335e40f5145d75cf848c3562bc02c3e53f668dbc04267"
+  }
+}

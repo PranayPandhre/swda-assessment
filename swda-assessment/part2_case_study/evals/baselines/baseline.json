@@ -1,0 +1,66 @@
+{
+  "adversarial": {
+    "fingerprints": {
+      "P1": "98fb39357c6907cf775563b8abfbea14c2a938c689da2540271e40822d22d078",
+      "P2": "23bd4b3be4c816612d4ab9c71c12958b92eda6d35943ee9c92e09c688081a2ae",
+      "P3": "2b1da5325c2dbdb09925205e9b142274f3225da99bde4869b55f600cf0023b96"
+    },
+    "metrics": {
+      "boundary_violations": 4,
+      "cards": 3,
+      "cost_units": 10.396,
+      "final_validity_min": 1.0,
+      "first_attempt_validity_min": 0.0,
+      "quarantined": 4,
+      "tool_denied": 3
+    }
+  },
+  "baseline": {
+    "fingerprints": {
+      "P1": "e6087bd89fd446b32225217353b53e1e7490dbfc5570cd220c54d11da2b15c2f",
+      "P2": "6dd8e9233161ddfcd855913552d055b67a87525b88b5f7f4fb201747ae3b9b46",
+      "P3": "b7b71982d1a22f08e033cedcf27693ce88a1b6d30e7374935249862bae7d950b",
+      "P4": "e9500dd3ab98614577ef1b1e9af698d384a9a9302c154d8cb00dc92e79095129"
+    },
+    "metrics": {
+      "boundary_violations": 0,
+      "cards": 4,
+      "cost_units": 8.5653,
+      "final_validity_min": 1.0,
+      "first_attempt_validity_min": 1.0,
+      "quarantined": 0,
+      "tool_denied": 0
+    }
+  },
+  "limits_cost": {
+    "fingerprints": {
+      "P1": "595cbff483ba3a28c54eae308c2df4cd358d71912e4370c4f1ada3ef98c42f8c",
+      "P3": "988e6dcaef2aefbcdf2086bd079c54b21d4106cf8427a6694597fe9aaa980c49"
+    },
+    "metrics": {
+      "boundary_violations": 0,
+      "cards": 2,
+      "cost_units": 1.8868,
+      "final_validity_min": 0.0,
+      "first_attempt_validity_min": 0.0,
+      "quarantined": 0,
+      "tool_denied": 0
+    }
+  },
+  "no_provider": {
+    "fingerprints": {
+      "P1": "83281b16542149475209a6dead458c25ad8671ab4ae06c774a36d8a131e94b40",
+      "P2": "2ea3457159e0668dbfda055bc588404c65c5d6d15f77b2105c159b5d0a72c4f0",
+      "P4": "1386ed214aa6e28607c745aaa1384751b4b7706b2d125540bb8f483b9f4cd69a"
+    },
+    "metrics": {
+      "boundary_violations": 0,
+      "cards": 3,
+      "cost_units": 5.2353,
+      "final_validity_min": 1.0,
+      "first_attempt_validity_min": 1.0,
+      "quarantined": 0,
+      "tool_denied": 0
+    }
+  }
+}

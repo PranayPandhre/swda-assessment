@@ -1,0 +1,262 @@
+{
+  "card_id": "baseline-20261113151422:P2",
+  "run_id": "baseline-20261113151422",
+  "pattern_key": "P2",
+  "title": "Sponsor-funded sham employment with value return",
+  "status": "changes_requested",
+  "disclaimer": "Simulated risk pattern for human review. It is a hypothesis generated from synthetic agent behaviour and untrusted annex text; it is not evidence that any real person or organisation did anything.",
+  "actors": [
+    {
+      "actor": "employer",
+      "title": "Employer Agent",
+      "goals": [
+        "Reduce net training and hiring cost",
+        "Access grants or sponsorship benefits"
+      ],
+      "contributed_capabilities": [
+        "post_course_termination",
+        "sham_employment",
+        "sponsor_fee_payment"
+      ]
+    },
+    {
+      "actor": "trainee",
+      "title": "Trainee Agent",
+      "goals": [
+        "Maximise personal benefit from subsidised training credits",
+        "Minimise effort and personal cost"
+      ],
+      "contributed_capabilities": [
+        "course_only_hire_participation"
+      ]
+    },
+    {
+      "actor": "training_provider",
+      "title": "Training Provider Agent",
+      "goals": [
+        "Maximise enrolment and claimed funding",
+        "Avoid audit findings"
+      ],
+      "contributed_capabilities": [
+        "value_return_via_provider"
+      ]
+    }
+  ],
+  "collusion_classification": "collusion",
+  "classification_basis": "3 actors are each necessary and value/information flows between actors",
+  "benefits": [
+    {
+      "to": "employer",
+      "kind": "reduced_cost"
+    },
+    {
+      "to": "trainee",
+      "kind": "credit_value"
+    }
+  ],
+  "flows": [
+    {
+      "from": "employer",
+      "to": "training_provider",
+      "kind": "fee"
+    },
+    {
+      "from": "training_provider",
+      "to": "employer",
+      "kind": "grant_funds"
+    }
+  ],
+  "simulated_behaviour": [
+    {
+      "actor": "employer",
+      "round": 1,
+      "capability": "sham_employment",
+      "capability_label": "Employment created mainly to access training funding",
+      "summary": "Employer hires individuals mainly so they can attend a funded course.",
+      "basis": "source",
+      "essential": true,
+      "source_refs": [
+        "MO-06"
+      ],
+      "assumption_ids": [],
+      "label": "SIMULATED - not a finding of fact"
+    },
+    {
+      "actor": "employer",
+      "round": 1,
+      "capability": "post_course_termination",
+      "capability_label": "Employment ends soon after course completion",
+      "summary": "Employment ends soon after the course finishes.",
+      "basis": "source",
+      "essential": true,
+      "source_refs": [
+        "MO-06"
+      ],
+      "assumption_ids": [],
+      "label": "SIMULATED - not a finding of fact"
+    },
+    {
+      "actor": "employer",
+      "round": 1,
+      "capability": "sponsor_fee_payment",
+      "capability_label": "Sponsor pays the nett course fee",
+      "summary": "Employer acts as sponsor and pays the nett fee.",
+      "basis": "source",
+      "essential": true,
+      "source_refs": [
+        "MO-08"
+      ],
+      "assumption_ids": [],
+      "label": "SIMULATED - not a finding of fact"
+    },
+    {
+      "actor": "trainee",
+      "round": 2,
+      "capability": "course_only_hire_participation",
+      "capability_label": "Hire who attends a course with no other work",
+      "summary": "A hired trainee attends the course as the main duty.",
+      "basis": "simulated",
+      "essential": true,
+      "source_refs": [
+        "MO-06"
+      ],
+      "assumption_ids": [],
+      "label": "SIMULATED - not a finding of fact"
+    },
+    {
+      "actor": "training_provider",
+      "round": 2,
+      "capability": "value_return_via_provider",
+      "capability_label": "Value flows back to the sponsor via the provider",
+      "summary": "Value returns to the sponsor via the provider after the fee is received.",
+      "basis": "assumption",
+      "essential": true,
+      "source_refs": [
+        "MO-08"
+      ],
+      "assumption_ids": [
+        "training_provider:A2"
+      ],
+      "label": "SIMULATED - not a finding of fact"
+    }
+  ],
+  "source_material": [
+    {
+      "id": "MO-06",
+      "kind": "annex_a_mo",
+      "basis": "Observed",
+      "text": "Employment created for grants: People are hired only to attend a course and are let go afterwards"
+    },
+    {
+      "id": "MO-08",
+      "kind": "annex_a_mo",
+      "basis": "Policy risk",
+      "text": "Indirect kickback through a sponsor: A sponsor pays the nett fee while value flows back through the provider"
+    }
+  ],
+  "assumptions": [
+    {
+      "id": "training_provider:A2",
+      "actor": "training_provider",
+      "text": "Annex A lists MO-08 as a policy risk, not an observed case; the return path is hypothesised."
+    }
+  ],
+  "removal_checks": [
+    {
+      "removed_actor": "employer",
+      "pattern_survives": false,
+      "missing_capabilities": [
+        "post_course_termination",
+        "sham_employment",
+        "sponsor_fee_payment"
+      ]
+    },
+    {
+      "removed_actor": "trainee",
+      "pattern_survives": false,
+      "missing_capabilities": [
+        "course_only_hire_participation"
+      ]
+    },
+    {
+      "removed_actor": "training_provider",
+      "pattern_survives": false,
+      "missing_capabilities": [
+        "value_return_via_provider"
+      ]
+    }
+  ],
+  "sufficient_single_actors": [],
+  "mo_classification": {
+    "mo_class": "variation",
+    "closest_mo": "MO-06",
+    "similarity": 0.6,
+    "matched_mos": [
+      "MO-06",
+      "MO-08"
+    ],
+    "novel_capabilities": []
+  },
+  "data_needed_for_testing": [
+    {
+      "dataset": "Payroll and work-activity records for course attendees",
+      "test": "Attendees with course-only activity",
+      "because": "capability:course_only_hire_participation"
+    },
+    {
+      "dataset": "Employment/CPF-style contribution history vs. course dates",
+      "test": "Tenure that starts shortly before and ends shortly after a funded course",
+      "because": "capability:post_course_termination"
+    },
+    {
+      "dataset": "Payer vs. participant relationships on fee records",
+      "test": "Sponsors paying for large numbers of unrelated participants",
+      "because": "capability:sponsor_fee_payment"
+    },
+    {
+      "dataset": "Provider payment and refund flows with sponsor-linked parties",
+      "test": "Payments from provider to sponsor-linked parties near fee receipt",
+      "because": "capability:value_return_via_provider"
+    },
+    {
+      "dataset": "Prior cases of the closest known MO",
+      "test": "Check whether the variant elements appear in historical cases",
+      "because": "mo_class:variation"
+    }
+  ],
+  "review": {
+    "reviewed": true,
+    "references_valid": true,
+    "unsupported_contributions": 0,
+    "source_support": "moderate",
+    "source_support_score": 3.0,
+    "agent_source_support_opinion": "strong",
+    "support_disagreement": true,
+    "agent_closest_mo_opinion": "MO-06",
+    "mo_disagreement": false,
+    "counter_evidence_refs": [],
+    "concerns": [
+      "MO-08 is a policy risk, not an observed case."
+    ],
+    "agent_recommendation": "recommend_human_approval"
+  },
+  "safety": {
+    "quarantined_items_in_run": 0,
+    "pattern_items_quarantined": 0,
+    "run_halt_reason": null
+  },
+  "blocking_issues": [],
+  "trace_seqs": [
+    11,
+    16,
+    18
+  ],
+  "approval": {
+    "decision": "request_changes",
+    "reviewer": "human:j.tan",
+    "notes": "MO-08 is a policy risk; reviewer opinion (strong) disagrees with computed support (moderate). Re-run with more evidence.",
+    "channel": "decisions_file",
+    "decided_at": "2026-11-13T15:14:22+00:00",
+    "card_digest": "5af18adfa4f415c175b4f3703f08d1710eb9f865d2aa38f09d74157e34586865"
+  }
+}

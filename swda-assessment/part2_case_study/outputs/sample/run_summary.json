@@ -1,0 +1,75 @@
+{
+  "boundary_violations": 0,
+  "cards": [
+    {
+      "blocking_issues": [],
+      "card_id": "baseline-20261113151422:P1",
+      "classification": "collusion",
+      "mo_class": "variation",
+      "source_support": "strong"
+    },
+    {
+      "blocking_issues": [],
+      "card_id": "baseline-20261113151422:P3",
+      "classification": "single_actor_misconduct",
+      "mo_class": "known",
+      "source_support": "moderate"
+    },
+    {
+      "blocking_issues": [],
+      "card_id": "baseline-20261113151422:P2",
+      "classification": "collusion",
+      "mo_class": "variation",
+      "source_support": "moderate"
+    },
+    {
+      "blocking_issues": [],
+      "card_id": "baseline-20261113151422:P4",
+      "classification": "collusion",
+      "mo_class": "new",
+      "source_support": "weak"
+    }
+  ],
+  "cost_units": 8.5653,
+  "failed_turns": 0,
+  "llm_calls": 10,
+  "max_cost_units": 40.0,
+  "max_rounds": 3,
+  "messages_delivered": 2,
+  "messages_undelivered": 0,
+  "quarantined": 0,
+  "retries": 0,
+  "roles": {
+    "employer": {
+      "final_validity": 1.0,
+      "first_attempt_validity": 1.0,
+      "llm_calls": 3,
+      "turns": 3
+    },
+    "review": {
+      "final_validity": 1.0,
+      "first_attempt_validity": 1.0,
+      "llm_calls": 1,
+      "turns": 1
+    },
+    "trainee": {
+      "final_validity": 1.0,
+      "first_attempt_validity": 1.0,
+      "llm_calls": 3,
+      "turns": 3
+    },
+    "training_provider": {
+      "final_validity": 1.0,
+      "first_attempt_validity": 1.0,
+      "llm_calls": 3,
+      "turns": 3
+    }
+  },
+  "rounds_executed": 3,
+  "run_id": "baseline-20261113151422",
+  "scenario": "baseline",
+  "status": "completed",
+  "tool_allowed": 1,
+  "tool_denied": 0,
+  "validation_failures": 0
+}

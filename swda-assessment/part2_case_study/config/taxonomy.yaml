@@ -1,0 +1,42 @@
+# Controlled vocabulary. Agents describe behaviour ONLY with these tags (+ a short capped summary), which keeps
+# outputs at risk-pattern level and makes classification, removal checks and evaluation deterministic.
+capabilities:
+  claim_without_attendance:      {label: "Claim submitted without attending", data_needed: [{dataset: "Claim records joined to independent attendance / check-in records", test: "Share of claims with no matching attendance"}]}
+  cash_inducement:               {label: "Cash or reward offered to use credits", data_needed: [{dataset: "Complaint / hotline text and recruiter referral channels", test: "Mentions of rewards tied to credit use; clustering by provider"}]}
+  attendance_optional_messaging: {label: "Messaging that attendance is optional", data_needed: [{dataset: "Complaint / hotline text", test: "Mentions of attendance being unnecessary"}]}
+  attendance_falsified:          {label: "Attendance recorded for training not delivered", data_needed: [{dataset: "Session attendance logs vs. trainer, venue and device records", test: "Sessions with attendance but no trainer/venue/device activity"}]}
+  sham_employment:               {label: "Employment created mainly to access training funding", data_needed: [{dataset: "Employment/CPF-style contribution history vs. course dates", test: "Tenure that starts shortly before and ends shortly after a funded course"}]}
+  post_course_termination:       {label: "Employment ends soon after course completion", data_needed: [{dataset: "Employment/CPF-style contribution history vs. course dates", test: "Tenure that starts shortly before and ends shortly after a funded course"}]}
+  course_only_hire_participation: {label: "Hire who attends a course with no other work", data_needed: [{dataset: "Payroll and work-activity records for course attendees", test: "Attendees with course-only activity"}]}
+  overclaimed_training:          {label: "Claims exceed training delivered", data_needed: [{dataset: "Claimed hours/participants vs. delivered session records", test: "Claim-to-delivery ratio by provider and course"}]}
+  sponsor_fee_payment:           {label: "Sponsor pays the nett course fee", data_needed: [{dataset: "Payer vs. participant relationships on fee records", test: "Sponsors paying for large numbers of unrelated participants"}]}
+  value_return_via_provider:     {label: "Value flows back to the sponsor via the provider", data_needed: [{dataset: "Provider payment and refund flows with sponsor-linked parties", test: "Payments from provider to sponsor-linked parties near fee receipt"}]}
+  dormant_entity_use:            {label: "Dormant entity used as employer or provider", data_needed: [{dataset: "Entity registry activity vs. claim volumes", test: "Claims from entities with no other trading activity"}]}
+  misleading_course_bundling:    {label: "Short course only sold inside a longer bundle", data_needed: [{dataset: "Course catalogue vs. enrolment records", test: "Share of enrolments in bundles vs. standalone availability"}]}
+  reciprocal_referral:           {label: "Reciprocal referrals between employer and provider", data_needed: [{dataset: "Employer-to-provider enrolment referral graph", test: "Reciprocal or circular referral concentration"}]}
+flow_kinds: [cash, grant_funds, fee, credit, information, employment]
+benefit_kinds: [cash_reward, grant_funds, credit_value, fee_revenue, reduced_cost]
+# Analyst-derived annotation of Annex A (NOT part of the annex): which capability tags describe each MO.
+# Humans maintain this mapping; it is what "similarity to the MO library" is computed against.
+mo_features:
+  MO-01: [dormant_entity_use]
+  MO-02: []
+  MO-03: [claim_without_attendance]
+  MO-04: [cash_inducement, attendance_optional_messaging]
+  MO-05: [attendance_falsified]
+  MO-06: [sham_employment, post_course_termination, course_only_hire_participation]
+  MO-07: [overclaimed_training]
+  MO-08: [sponsor_fee_payment, value_return_via_provider]
+mo_classification:
+  known_threshold: 0.8        # Jaccard(pattern tags, MO tags) >= this -> known
+  variation_threshold: 0.3    # >= this -> variation of the closest MO(s); below -> new
+  data_needed_by_class:
+    new: [{dataset: "SME validation of plausibility with investigators", test: "Confirm the pattern is not an artefact of the simulation"}]
+    variation: [{dataset: "Prior cases of the closest known MO", test: "Check whether the variant elements appear in historical cases"}]
+    known: []
+evidence:
+  source_weights: {"Observed": 3, "Observed overseas": 2, "Policy risk": 1, "Unverified social media": 1}
+  assumption_penalty: 1
+  thresholds: {strong: 8, moderate: 3}          # score >= strong -> strong; >= moderate -> moderate; else weak
+  unverified_bases: ["Unverified social media"]
+  unverified_only_cap: weak                     # if every cited source is unverified, support cannot exceed this

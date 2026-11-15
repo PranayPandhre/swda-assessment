@@ -1,0 +1,40 @@
+name: no_provider
+description: Actor-removal at SYSTEM level - baseline with the Training Provider Agent disabled; patterns that need the provider must not survive
+  as collusion.
+extends: baseline
+disabled_actors:
+- training_provider
+script_overrides:
+  review:
+  - round: 0
+    attempts:
+    - reviews:
+      - pattern_key: P1
+        reference_comment: All cited ids resolve; S3 is an unverified complaint and carries the inducement element.
+        assumption_comment: A1 (agent works for the provider) is not stated in S3.
+        source_support_opinion: strong
+        closest_mo_opinion: MO-04
+        counter_evidence_refs: []
+        concerns:
+        - Reward element rests on a single unverified complaint (S3).
+        recommendation: recommend_human_approval
+      - pattern_key: P2
+        reference_comment: All cited ids resolve.
+        assumption_comment: 'A2: the value-return path is hypothesised.'
+        source_support_opinion: strong
+        closest_mo_opinion: MO-06
+        counter_evidence_refs: []
+        concerns:
+        - MO-08 is a policy risk, not an observed case.
+        recommendation: recommend_human_approval
+      - pattern_key: P4
+        reference_comment: All cited ids resolve.
+        assumption_comment: The referral element is an assumption.
+        source_support_opinion: weak
+        closest_mo_opinion: null
+        counter_evidence_refs:
+        - S5
+        concerns:
+        - Both cited sources are unverified consumer complaints.
+        recommendation: needs_more_evidence
+      tool_calls: []

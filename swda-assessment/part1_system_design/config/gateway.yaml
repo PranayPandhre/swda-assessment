@@ -1,0 +1,29 @@
+# Gateway runtime settings. Everything tunable lives here (no values hardcoded in code).
+server:
+  name: swda-agent-gateway
+  version: 0.1.0
+  supported_protocol_versions: ["2025-06-18", "2025-03-26", "2024-11-05"]   # newest first
+  http: {host: 127.0.0.1, port: 8808}
+paths:                      # relative to the part1_system_design directory
+  registry: config/agent_registry.yaml
+  clients: config/clients.yaml
+  audit_log: var/audit/audit.jsonl
+  release_gates: config/release_gates.yaml
+  golden_set: data/golden_requests.jsonl
+limits:
+  max_request_bytes: 8192
+  max_text_chars: 2000
+  rate_limit_per_minute: 60     # default; a client entry may override
+  rate_limit_burst: 10
+  agent_timeout_seconds: 2.0
+  allowed_entrypoint_prefix: swda_agent_gateway.agents.   # registry entrypoints outside this prefix are refused
+audit:
+  hmac_key_env: SWDA_AUDIT_HMAC_KEY     # key comes from the environment / secrets manager, never from the repo
+pii:
+  redaction_token: "[REDACTED:{kind}]"
+  patterns:                              # synthetic-data demo patterns; production uses a managed PII service as well
+    nric: "\\b[STFGM]\\d{7}[A-Z]\\b"
+    email: "[\\w.+-]+@[\\w-]+\\.[\\w.-]+"
+    phone: "(?<!\\d)(?:\\+65[ -]?)?[689]\\d{3}[ -]?\\d{4}(?!\\d)"
+auth:
+  token_env_stdio: SWDA_MCP_TOKEN        # stdio transport: caller identity comes from the launching process env

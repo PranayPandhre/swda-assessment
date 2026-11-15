@@ -1,0 +1,11 @@
+# CI/CD/CT release gate thresholds for the Service Recommendation Agent.
+agent_id: service-recommendation-agent
+min_category_accuracy: 0.85
+min_hit_rate_at_k: 0.80
+hit_rate_k: 3
+max_p95_latency_ms: 50
+max_unclassified_rate: 0.15
+drift:
+  psi_warn: 0.10
+  psi_alert: 0.25
+  min_bin_fraction: 0.0001     # smoothing floor for empty bins

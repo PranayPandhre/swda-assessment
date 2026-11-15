@@ -1,0 +1,25 @@
+simulation:
+  max_rounds: 3
+  round_order: [trainee, training_provider, employer]
+  max_contributions_per_turn: 4
+  max_messages_per_turn: 2
+  max_tool_calls_per_turn: 2
+  max_message_chars: 280
+  max_summary_chars: 200
+  max_title_chars: 90
+  pattern_key_regex: "^P[0-9]{1,2}$"
+  max_retries: 2                 # retries after the first attempt, per turn
+  max_failed_turns: 3            # exhausted-retry turns before the run halts
+  max_quarantined_items: 6       # safeguard hits before the run halts for human attention
+  max_cost_units: 40.0
+cost:
+  chars_per_token: 4             # rough token estimate for the mock; real runs use provider usage counts
+  units_per_1k_tokens: 1.0
+trace:
+  store_prompt_text: true        # synthetic data only; production stores hashes + redacted text
+approval:
+  decisions: [approve, reject, request_changes]
+  reviewer_id_regex: "^human:[a-z0-9._-]+$"     # agent identities ("agent:...") can never match
+  notes_required_when: {source_support: [weak], mo_class: [new]}
+  blocking_issues_prevent_approve: true
+disclaimer: "Simulated risk pattern for human review. It is a hypothesis generated from synthetic agent behaviour and untrusted annex text; it is not evidence that any real person or organisation did anything."

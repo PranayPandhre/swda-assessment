@@ -1,0 +1,19 @@
+name: ci
+on: [pull_request, push]
+permissions: {contents: read}
+jobs:
+  build-test-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install -e ".[dev,mcp-compat]" pip-audit bandit
+      - run: ruff check .
+      - run: pytest
+      - run: swda-gateway registry validate        # fails if an approved record is tampered / out of policy
+      - run: swda-gateway gate                     # Part 1 release gate (golden set + thresholds)
+        env: {SWDA_AUDIT_HMAC_KEY: ci-only-key}
+      - run: collusion-sim eval                    # Part 2 evals + regression vs committed baseline
+      - run: bandit -q -r part1_system_design/src part2_case_study/src
+      - run: pip-audit

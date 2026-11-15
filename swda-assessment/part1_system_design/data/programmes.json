@@ -1,0 +1,232 @@
+{
+ "programmes": [
+  {
+   "programme_id": "P001",
+   "title": "Data Analytics Fundamentals",
+   "categories": [
+    "digital_skills",
+    "career_switch"
+   ],
+   "mode": "online",
+   "duration_weeks": 12,
+   "subsidy_rate": 0.7,
+   "eligible_employment": [
+    "employed",
+    "unemployed",
+    "self_employed"
+   ],
+   "min_age": 18,
+   "max_age": null
+  },
+  {
+   "programme_id": "P002",
+   "title": "Python for Professionals",
+   "categories": [
+    "digital_skills"
+   ],
+   "mode": "online",
+   "duration_weeks": 8,
+   "subsidy_rate": 0.5,
+   "eligible_employment": [
+    "employed",
+    "unemployed"
+   ],
+   "min_age": 18,
+   "max_age": null
+  },
+  {
+   "programme_id": "P003",
+   "title": "Cloud Practitioner Bootcamp",
+   "categories": [
+    "digital_skills",
+    "career_switch"
+   ],
+   "mode": "classroom",
+   "duration_weeks": 16,
+   "subsidy_rate": 0.7,
+   "eligible_employment": [
+    "employed",
+    "unemployed"
+   ],
+   "min_age": 21,
+   "max_age": null
+  },
+  {
+   "programme_id": "P004",
+   "title": "Career Conversion Programme: Tech",
+   "categories": [
+    "career_switch",
+    "digital_skills"
+   ],
+   "mode": "classroom",
+   "duration_weeks": 24,
+   "subsidy_rate": 0.9,
+   "eligible_employment": [
+    "employed",
+    "unemployed"
+   ],
+   "min_age": 21,
+   "max_age": null
+  },
+  {
+   "programme_id": "P005",
+   "title": "Job Search Essentials",
+   "categories": [
+    "job_seeker_support"
+   ],
+   "mode": "online",
+   "duration_weeks": 4,
+   "subsidy_rate": 0.9,
+   "eligible_employment": [
+    "unemployed"
+   ],
+   "min_age": 18,
+   "max_age": null
+  },
+  {
+   "programme_id": "P006",
+   "title": "Interview and Resume Clinic",
+   "categories": [
+    "job_seeker_support"
+   ],
+   "mode": "classroom",
+   "duration_weeks": 2,
+   "subsidy_rate": 0.8,
+   "eligible_employment": [
+    "unemployed",
+    "employed"
+   ],
+   "min_age": 18,
+   "max_age": null
+  },
+  {
+   "programme_id": "P007",
+   "title": "Retrenchment Support Pathway",
+   "categories": [
+    "job_seeker_support",
+    "career_switch"
+   ],
+   "mode": "classroom",
+   "duration_weeks": 10,
+   "subsidy_rate": 0.95,
+   "eligible_employment": [
+    "unemployed"
+   ],
+   "min_age": 21,
+   "max_age": null
+  },
+  {
+   "programme_id": "P008",
+   "title": "First-Time Manager Essentials",
+   "categories": [
+    "leadership"
+   ],
+   "mode": "classroom",
+   "duration_weeks": 6,
+   "subsidy_rate": 0.6,
+   "eligible_employment": [
+    "employed"
+   ],
+   "min_age": 21,
+   "max_age": null
+  },
+  {
+   "programme_id": "P009",
+   "title": "Leading High-Performing Teams",
+   "categories": [
+    "leadership"
+   ],
+   "mode": "online",
+   "duration_weeks": 10,
+   "subsidy_rate": 0.5,
+   "eligible_employment": [
+    "employed"
+   ],
+   "min_age": 25,
+   "max_age": null
+  },
+  {
+   "programme_id": "P010",
+   "title": "Healthcare Support Associate",
+   "categories": [
+    "care_sector",
+    "career_switch"
+   ],
+   "mode": "classroom",
+   "duration_weeks": 20,
+   "subsidy_rate": 0.9,
+   "eligible_employment": [
+    "employed",
+    "unemployed"
+   ],
+   "min_age": 18,
+   "max_age": null
+  },
+  {
+   "programme_id": "P011",
+   "title": "Eldercare Caregiver Skills",
+   "categories": [
+    "care_sector"
+   ],
+   "mode": "classroom",
+   "duration_weeks": 6,
+   "subsidy_rate": 0.8,
+   "eligible_employment": [
+    "employed",
+    "unemployed",
+    "self_employed"
+   ],
+   "min_age": 18,
+   "max_age": null
+  },
+  {
+   "programme_id": "P012",
+   "title": "Senior Learners Digital Basics",
+   "categories": [
+    "digital_skills"
+   ],
+   "mode": "classroom",
+   "duration_weeks": 4,
+   "subsidy_rate": 0.8,
+   "eligible_employment": [
+    "employed",
+    "unemployed",
+    "retired"
+   ],
+   "min_age": 50,
+   "max_age": null
+  },
+  {
+   "programme_id": "P013",
+   "title": "Advanced Machine Learning Practice",
+   "categories": [
+    "digital_skills"
+   ],
+   "mode": "online",
+   "duration_weeks": 14,
+   "subsidy_rate": 0.4,
+   "eligible_employment": [
+    "employed"
+   ],
+   "min_age": 21,
+   "max_age": null
+  },
+  {
+   "programme_id": "P014",
+   "title": "Transition to Project Management",
+   "categories": [
+    "career_switch",
+    "leadership"
+   ],
+   "mode": "online",
+   "duration_weeks": 12,
+   "subsidy_rate": 0.6,
+   "eligible_employment": [
+    "employed",
+    "unemployed"
+   ],
+   "min_age": 21,
+   "max_age": null
+  }
+ ]
+}

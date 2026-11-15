@@ -1,0 +1,238 @@
+{
+  "card_id": "baseline-20261113151422:P1",
+  "run_id": "baseline-20261113151422",
+  "pattern_key": "P1",
+  "title": "Credit encashment with inducement and falsified attendance",
+  "status": "approved",
+  "disclaimer": "Simulated risk pattern for human review. It is a hypothesis generated from synthetic agent behaviour and untrusted annex text; it is not evidence that any real person or organisation did anything.",
+  "actors": [
+    {
+      "actor": "trainee",
+      "title": "Trainee Agent",
+      "goals": [
+        "Maximise personal benefit from subsidised training credits",
+        "Minimise effort and personal cost"
+      ],
+      "contributed_capabilities": [
+        "claim_without_attendance"
+      ]
+    },
+    {
+      "actor": "training_provider",
+      "title": "Training Provider Agent",
+      "goals": [
+        "Maximise enrolment and claimed funding",
+        "Avoid audit findings"
+      ],
+      "contributed_capabilities": [
+        "attendance_falsified",
+        "attendance_optional_messaging",
+        "cash_inducement"
+      ]
+    }
+  ],
+  "collusion_classification": "collusion",
+  "classification_basis": "2 actors are each necessary and value/information flows between actors",
+  "benefits": [
+    {
+      "to": "trainee",
+      "kind": "cash_reward"
+    },
+    {
+      "to": "training_provider",
+      "kind": "grant_funds"
+    }
+  ],
+  "flows": [
+    {
+      "from": "training_provider",
+      "to": "trainee",
+      "kind": "cash"
+    }
+  ],
+  "simulated_behaviour": [
+    {
+      "actor": "trainee",
+      "round": 1,
+      "capability": "claim_without_attendance",
+      "capability_label": "Claim submitted without attending",
+      "summary": "Trainee considers claiming credits without attending after being told attendance is optional.",
+      "basis": "source",
+      "essential": true,
+      "source_refs": [
+        "MO-03",
+        "S3"
+      ],
+      "assumption_ids": [],
+      "label": "SIMULATED - not a finding of fact"
+    },
+    {
+      "actor": "training_provider",
+      "round": 1,
+      "capability": "attendance_falsified",
+      "capability_label": "Attendance recorded for training not delivered",
+      "summary": "Provider records attendance for sessions that did not run so the claim stays valid.",
+      "basis": "source",
+      "essential": true,
+      "source_refs": [
+        "MO-05"
+      ],
+      "assumption_ids": [],
+      "label": "SIMULATED - not a finding of fact"
+    },
+    {
+      "actor": "training_provider",
+      "round": 1,
+      "capability": "cash_inducement",
+      "capability_label": "Cash or reward offered to use credits",
+      "summary": "A marketing representative acting for the provider offers a reward to use credits.",
+      "basis": "source",
+      "essential": true,
+      "source_refs": [
+        "MO-04",
+        "S3"
+      ],
+      "assumption_ids": [
+        "training_provider:A1"
+      ],
+      "label": "SIMULATED - not a finding of fact"
+    },
+    {
+      "actor": "training_provider",
+      "round": 1,
+      "capability": "attendance_optional_messaging",
+      "capability_label": "Messaging that attendance is optional",
+      "summary": "The representative implies attendance is optional.",
+      "basis": "source",
+      "essential": false,
+      "source_refs": [
+        "MO-04"
+      ],
+      "assumption_ids": [],
+      "label": "SIMULATED - not a finding of fact"
+    }
+  ],
+  "source_material": [
+    {
+      "id": "MO-03",
+      "kind": "annex_a_mo",
+      "basis": "Observed",
+      "text": "Credit encashment: Individuals submit false claims without attending a course"
+    },
+    {
+      "id": "MO-04",
+      "kind": "annex_a_mo",
+      "basis": "Observed",
+      "text": "Cash for enrolment: Agents or recruiters offer cash for using credits and suggest attendance is optional"
+    },
+    {
+      "id": "MO-05",
+      "kind": "annex_a_mo",
+      "basis": "Observed",
+      "text": "Falsified attendance: Attendance is recorded for training that did not take place"
+    },
+    {
+      "id": "S3",
+      "kind": "annex_b_excerpt",
+      "basis": "Unverified social media",
+      "text": "A marketing agent kept pushing my elderly mum to use her credits and mentioned a cash reward. Not sure what the course even was."
+    }
+  ],
+  "assumptions": [
+    {
+      "id": "training_provider:A1",
+      "actor": "training_provider",
+      "text": "The marketing agent in S3 acts on behalf of the provider; Annex B does not say who the agent works for."
+    }
+  ],
+  "removal_checks": [
+    {
+      "removed_actor": "trainee",
+      "pattern_survives": false,
+      "missing_capabilities": [
+        "claim_without_attendance"
+      ]
+    },
+    {
+      "removed_actor": "training_provider",
+      "pattern_survives": false,
+      "missing_capabilities": [
+        "attendance_falsified",
+        "cash_inducement"
+      ]
+    }
+  ],
+  "sufficient_single_actors": [],
+  "mo_classification": {
+    "mo_class": "variation",
+    "closest_mo": "MO-04",
+    "similarity": 0.5,
+    "matched_mos": [
+      "MO-04",
+      "MO-03",
+      "MO-05"
+    ],
+    "novel_capabilities": []
+  },
+  "data_needed_for_testing": [
+    {
+      "dataset": "Session attendance logs vs. trainer, venue and device records",
+      "test": "Sessions with attendance but no trainer/venue/device activity",
+      "because": "capability:attendance_falsified"
+    },
+    {
+      "dataset": "Complaint / hotline text",
+      "test": "Mentions of attendance being unnecessary",
+      "because": "capability:attendance_optional_messaging"
+    },
+    {
+      "dataset": "Complaint / hotline text and recruiter referral channels",
+      "test": "Mentions of rewards tied to credit use; clustering by provider",
+      "because": "capability:cash_inducement"
+    },
+    {
+      "dataset": "Claim records joined to independent attendance / check-in records",
+      "test": "Share of claims with no matching attendance",
+      "because": "capability:claim_without_attendance"
+    },
+    {
+      "dataset": "Prior cases of the closest known MO",
+      "test": "Check whether the variant elements appear in historical cases",
+      "because": "mo_class:variation"
+    }
+  ],
+  "review": {
+    "reviewed": true,
+    "references_valid": true,
+    "unsupported_contributions": 0,
+    "source_support": "strong",
+    "source_support_score": 9.0,
+    "agent_source_support_opinion": "strong",
+    "support_disagreement": false,
+    "agent_closest_mo_opinion": "MO-04",
+    "mo_disagreement": false,
+    "counter_evidence_refs": [],
+    "concerns": [
+      "Reward element rests on a single unverified complaint (S3)."
+    ],
+    "agent_recommendation": "recommend_human_approval"
+  },
+  "safety": {
+    "quarantined_items_in_run": 0,
+    "pattern_items_quarantined": 0,
+    "run_halt_reason": null
+  },
+  "blocking_issues": [],
+  "trace_seqs": [
+    4,
+    8
+  ],
+  "approval": {
+    "decision": "approve",
+    "reviewer": "human:j.tan",
+    "notes": "Variation of MO-03/04/05; reward element rests on one unverified complaint, so use for hypothesis testing only.",
+    "channel": "decisions_file",
+    "decided_at": "2026-11-13T15:14:22+00:00",
+    "card_digest": "b626477315a55d380d58064cdd88354ef2cb8487e37c9144cf249de4454de883"
+  }
+}

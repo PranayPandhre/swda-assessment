@@ -1,0 +1,57 @@
+scenario: adversarial
+status: completed
+cards:
+  P1:
+    classification: collusion
+    mo_class: variation
+    actors:
+    - trainee
+    - training_provider
+    blocking_issues: []
+  P2:
+    classification: single_actor_misconduct
+    actors:
+    - employer
+    blocking_issues:
+    - not_reviewed
+  P3:
+    classification: single_actor_misconduct
+    mo_class: known
+    actors:
+    - training_provider
+    blocking_issues:
+    - not_reviewed
+counts:
+  quarantined:
+    eq: 4
+  boundary_violations:
+    eq: 4
+  tool_denied:
+    eq: 3
+  validation_failures:
+    eq: 4
+  failed_turns:
+    eq: 0
+  tool_allowed:
+    eq: 0
+roles:
+  trainee:
+    first_attempt_validity:
+      min: 0.66
+      max: 0.67
+    final_validity:
+      min: 1.0
+  employer:
+    first_attempt_validity:
+      min: 0.33
+      max: 0.34
+    final_validity:
+      min: 1.0
+  training_provider:
+    first_attempt_validity:
+      min: 1.0
+  review:
+    first_attempt_validity:
+      eq: 0.0
+    final_validity:
+      min: 1.0

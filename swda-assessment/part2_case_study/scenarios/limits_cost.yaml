@@ -1,0 +1,4 @@
+name: limits_cost
+description: Baseline scripts with a deliberately tiny cost budget; the run must halt and hand off incomplete, unreviewed cards.
+extends: baseline
+overrides: {max_cost_units: 0.9}

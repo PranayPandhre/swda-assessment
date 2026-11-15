@@ -1,0 +1,82 @@
+catalogue_path: data/programmes.json
+classifier:
+  min_score: 0.25
+  saturation: 3.0
+  ambiguity_margin: 0.1
+  categories:
+    career_switch:
+      keywords:
+        career change: 2.0
+        switch career: 2.0
+        switch: 1.0
+        new industry: 1.5
+        transition: 1.0
+        change field: 1.5
+    digital_skills:
+      keywords:
+        data: 1.0
+        analytics: 1.5
+        coding: 1.5
+        python: 1.5
+        cloud: 1.5
+        ai: 1.0
+        digital: 1.0
+        software: 1.0
+    job_seeker_support:
+      keywords:
+        retrenched: 2.0
+        laid off: 2.0
+        unemployed: 2.0
+        job search: 1.5
+        between jobs: 1.5
+        interview: 1.0
+        resume: 1.0
+    leadership:
+      keywords:
+        manager: 1.5
+        leadership: 2.0
+        lead a team: 2.0
+        promotion: 1.0
+        supervisor: 1.5
+    care_sector:
+      keywords:
+        nursing: 2.0
+        caregiver: 2.0
+        elderly: 1.5
+        healthcare: 1.5
+        care: 1.0
+ranking:
+  top_k: 3
+  weights:
+    category_match: 0.5
+    mode_match: 0.15
+    subsidy: 0.2
+    duration_fit: 0.15
+  max_duration_weeks_fit: 16
+review:
+  sensitive_categories:
+  - job_seeker_support
+  low_confidence_flag: low_confidence
+request_schema_path: config/agents/service_recommendation.request.schema.json
+fields:
+  text: text
+  catalogue:
+    id: programme_id
+    title: title
+    categories: categories
+    mode: mode
+    duration_weeks: duration_weeks
+    subsidy_rate: subsidy_rate
+  eligibility:
+  - request_field: employment_status
+    programme_field: eligible_employment
+    op: in
+  - request_field: age
+    programme_field: min_age
+    op: gte
+  - request_field: age
+    programme_field: max_age
+    op: lte
+  preferences:
+  - request_field: preferred_mode
+    programme_field: mode

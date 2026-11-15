@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "swda-assessment"
+version = "0.1.0"
+description = "SWDA ML/AI Engineer take-home: MCP agent gateway (Part 1) and collusion simulation (Part 2)"
+requires-python = ">=3.10"
+dependencies = ["pydantic>=2.5", "PyYAML>=6.0", "jsonschema>=4.20"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.5"]
+mcp-compat = ["mcp>=1.2"]
+
+[project.scripts]
+swda-gateway = "swda_agent_gateway.cli:main"
+collusion-sim = "collusion_sim.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["part1_system_design/src", "part2_case_study/src"]
+
+[tool.pytest.ini_options]
+testpaths = ["part1_system_design/tests", "part2_case_study/tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 200
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+ignore = ["E731"]

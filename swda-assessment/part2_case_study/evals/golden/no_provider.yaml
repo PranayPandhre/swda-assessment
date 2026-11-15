@@ -1,0 +1,23 @@
+scenario: no_provider
+status: completed
+cards:
+  P1:
+    classification: single_actor_misconduct
+    actors:
+    - trainee
+    blocking_issues: []
+  P2:
+    classification: parallel_misconduct
+    actors:
+    - employer
+    - trainee
+    blocking_issues: []
+  P4:
+    classification: single_actor_misconduct
+    mo_class: new
+    actors:
+    - employer
+    blocking_issues: []
+counts:
+  quarantined:
+    eq: 0

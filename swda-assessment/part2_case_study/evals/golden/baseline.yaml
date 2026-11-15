@@ -1,0 +1,84 @@
+scenario: baseline
+status: completed
+cards:
+  P1:
+    classification: collusion
+    mo_class: variation
+    closest_mo: MO-04
+    source_support: strong
+    actors:
+    - trainee
+    - training_provider
+    necessary_actors:
+    - trainee
+    - training_provider
+    blocking_issues: []
+    support_disagreement: false
+  P2:
+    classification: collusion
+    mo_class: variation
+    closest_mo: MO-06
+    source_support: moderate
+    actors:
+    - employer
+    - trainee
+    - training_provider
+    necessary_actors:
+    - employer
+    - trainee
+    - training_provider
+    blocking_issues: []
+    support_disagreement: true
+  P3:
+    classification: single_actor_misconduct
+    mo_class: known
+    closest_mo: MO-07
+    source_support: moderate
+    actors:
+    - training_provider
+    blocking_issues: []
+    support_disagreement: false
+  P4:
+    classification: collusion
+    mo_class: new
+    closest_mo: null
+    source_support: weak
+    actors:
+    - employer
+    - training_provider
+    blocking_issues: []
+    support_disagreement: false
+counts:
+  quarantined:
+    eq: 0
+  boundary_violations:
+    eq: 0
+  tool_denied:
+    eq: 0
+  validation_failures:
+    eq: 0
+  failed_turns:
+    eq: 0
+  rounds_executed:
+    max: 3
+roles:
+  trainee:
+    first_attempt_validity:
+      min: 1.0
+    final_validity:
+      min: 1.0
+  training_provider:
+    first_attempt_validity:
+      min: 1.0
+    final_validity:
+      min: 1.0
+  employer:
+    first_attempt_validity:
+      min: 1.0
+    final_validity:
+      min: 1.0
+  review:
+    first_attempt_validity:
+      min: 1.0
+    final_validity:
+      min: 1.0

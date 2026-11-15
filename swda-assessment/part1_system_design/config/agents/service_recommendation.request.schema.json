@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ServiceRecommendationRequest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["request_id", "text"],
+  "properties": {
+    "request_id": {"type": "string", "pattern": "^[A-Za-z0-9_-]{1,64}$", "description": "Caller-supplied idempotency / correlation id"},
+    "text": {"type": "string", "minLength": 1, "description": "Free-text service request (PII is redacted before processing)"},
+    "employment_status": {"type": "string", "enum": ["employed", "unemployed", "self_employed", "retired", "student"]},
+    "age": {"type": "integer", "minimum": 16, "maximum": 100},
+    "preferred_mode": {"type": "string", "enum": ["online", "classroom"]}
+  }
+}

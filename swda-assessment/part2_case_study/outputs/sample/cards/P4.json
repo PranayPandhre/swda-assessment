@@ -1,0 +1,172 @@
+{
+  "card_id": "baseline-20261113151422:P4",
+  "run_id": "baseline-20261113151422",
+  "pattern_key": "P4",
+  "title": "Bundled course misdirection with reciprocal referrals",
+  "status": "pending_human_review",
+  "disclaimer": "Simulated risk pattern for human review. It is a hypothesis generated from synthetic agent behaviour and untrusted annex text; it is not evidence that any real person or organisation did anything.",
+  "actors": [
+    {
+      "actor": "employer",
+      "title": "Employer Agent",
+      "goals": [
+        "Reduce net training and hiring cost",
+        "Access grants or sponsorship benefits"
+      ],
+      "contributed_capabilities": [
+        "reciprocal_referral"
+      ]
+    },
+    {
+      "actor": "training_provider",
+      "title": "Training Provider Agent",
+      "goals": [
+        "Maximise enrolment and claimed funding",
+        "Avoid audit findings"
+      ],
+      "contributed_capabilities": [
+        "misleading_course_bundling"
+      ]
+    }
+  ],
+  "collusion_classification": "collusion",
+  "classification_basis": "2 actors are each necessary and value/information flows between actors",
+  "benefits": [
+    {
+      "to": "training_provider",
+      "kind": "fee_revenue"
+    }
+  ],
+  "flows": [
+    {
+      "from": "employer",
+      "to": "training_provider",
+      "kind": "information"
+    }
+  ],
+  "simulated_behaviour": [
+    {
+      "actor": "training_provider",
+      "round": 2,
+      "capability": "misleading_course_bundling",
+      "capability_label": "Short course only sold inside a longer bundle",
+      "summary": "Provider only sells the short course inside a longer bundle.",
+      "basis": "source",
+      "essential": true,
+      "source_refs": [
+        "S1",
+        "S2"
+      ],
+      "assumption_ids": [],
+      "label": "SIMULATED - not a finding of fact"
+    },
+    {
+      "actor": "employer",
+      "round": 2,
+      "capability": "reciprocal_referral",
+      "capability_label": "Reciprocal referrals between employer and provider",
+      "summary": "Employer refers staff to the provider in return for referrals back.",
+      "basis": "assumption",
+      "essential": true,
+      "source_refs": [],
+      "assumption_ids": [
+        "employer:A1"
+      ],
+      "label": "SIMULATED - not a finding of fact"
+    }
+  ],
+  "source_material": [
+    {
+      "id": "S1",
+      "kind": "annex_b_excerpt",
+      "basis": "Unverified social media",
+      "text": "I signed up for a short course, then found out it's only available as part of a longer diploma. Feels misleading."
+    },
+    {
+      "id": "S2",
+      "kind": "annex_b_excerpt",
+      "basis": "Unverified social media",
+      "text": "Almost $600 for basic cleaning training? How is that worth it?"
+    }
+  ],
+  "assumptions": [
+    {
+      "id": "employer:A1",
+      "actor": "employer",
+      "text": "No annex source describes employer-provider referral arrangements; hypothesised from the simulation incentives."
+    }
+  ],
+  "removal_checks": [
+    {
+      "removed_actor": "employer",
+      "pattern_survives": false,
+      "missing_capabilities": [
+        "reciprocal_referral"
+      ]
+    },
+    {
+      "removed_actor": "training_provider",
+      "pattern_survives": false,
+      "missing_capabilities": [
+        "misleading_course_bundling"
+      ]
+    }
+  ],
+  "sufficient_single_actors": [],
+  "mo_classification": {
+    "mo_class": "new",
+    "closest_mo": null,
+    "similarity": 0.0,
+    "matched_mos": [],
+    "novel_capabilities": [
+      "misleading_course_bundling",
+      "reciprocal_referral"
+    ]
+  },
+  "data_needed_for_testing": [
+    {
+      "dataset": "Course catalogue vs. enrolment records",
+      "test": "Share of enrolments in bundles vs. standalone availability",
+      "because": "capability:misleading_course_bundling"
+    },
+    {
+      "dataset": "Employer-to-provider enrolment referral graph",
+      "test": "Reciprocal or circular referral concentration",
+      "because": "capability:reciprocal_referral"
+    },
+    {
+      "dataset": "SME validation of plausibility with investigators",
+      "test": "Confirm the pattern is not an artefact of the simulation",
+      "because": "mo_class:new"
+    }
+  ],
+  "review": {
+    "reviewed": true,
+    "references_valid": true,
+    "unsupported_contributions": 1,
+    "source_support": "weak",
+    "source_support_score": 1.0,
+    "agent_source_support_opinion": "weak",
+    "support_disagreement": false,
+    "agent_closest_mo_opinion": null,
+    "mo_disagreement": false,
+    "counter_evidence_refs": [
+      "S5"
+    ],
+    "concerns": [
+      "Both cited sources are unverified consumer complaints."
+    ],
+    "agent_recommendation": "needs_more_evidence"
+  },
+  "safety": {
+    "quarantined_items_in_run": 0,
+    "pattern_items_quarantined": 0,
+    "run_halt_reason": null
+  },
+  "blocking_issues": [],
+  "trace_seqs": [
+    18,
+    20
+  ],
+  "approval": null
+}

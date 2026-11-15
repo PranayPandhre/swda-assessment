@@ -1,0 +1,19 @@
+# Rule-based screens applied to every untrusted text: annex content on retrieval, agent messages, and agent outputs.
+rules:
+  injection:
+    - {id: INJ-01, pattern: "(?i)ignore (all |any )?(previous|prior|above) (instructions|rules)"}
+    - {id: INJ-02, pattern: "(?i)(system|developer) prompt"}
+    - {id: INJ-03, pattern: "(?i)\\byou are now\\b|\\bnew instructions?\\b|\\bfrom now on,? you\\b|\\bpretend (to be|you are)\\b"}
+    - {id: INJ-04, pattern: "(?i)(approve|mark)\\b.{0,40}\\b(all|every)\\b.{0,20}\\bpatterns?\\b"}
+    - {id: INJ-05, pattern: "(?i)reveal .{0,30}(prompt|instructions|credentials|secret)"}
+  operational_detail:                       # outputs must stay at risk-pattern level, not a how-to
+    - {id: OPS-01, pattern: "(?i)\\bstep\\s*\\d+\\b|\\bfirst,? .{0,40}\\bthen\\b"}
+    - {id: OPS-02, pattern: "(?i)\\bhow to (forge|falsify|fake|evade|launder)\\b"}
+    - {id: OPS-03, pattern: "https?://|www\\."}
+    - {id: OPS-04, pattern: "\\$\\s?\\d|\\bS\\$\\s?\\d"}
+  fact_assertion:                           # simulated behaviour must never read as established fact
+    - {id: FACT-01, pattern: "(?i)\\b(confirmed|proven|proved|is guilty|were guilty|did commit|committed fraud)\\b"}
+  pii:
+    - {id: PII-01, pattern: "\\b[STFGM]\\d{7}[A-Z]\\b"}
+    - {id: PII-02, pattern: "[\\w.+-]+@[\\w-]+\\.[\\w.-]+"}
+untrusted_wrapper: "<untrusted_source id=\"{id}\">{text}</untrusted_source>"

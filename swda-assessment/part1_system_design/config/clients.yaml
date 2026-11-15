@@ -1,0 +1,10 @@
+# MCP clients allowed to reach the gateway. Only SHA-256 digests of tokens are stored.
+# Demo tokens (synthetic): portal-app -> "demo-token-portal", analyst-console -> "demo-token-analyst"
+clients:
+  - client_id: portal-app
+    token_sha256: 1cd642b34ab3075a680c92daa97f0e1102870b5111ea58490a203aa217920a8f
+    scopes: ["agent:service-recommendation-agent:invoke"]
+    rate_limit_per_minute: 120
+  - client_id: analyst-console
+    token_sha256: c75fb0a67ca41fe8f4229687a17201423785162d857bd179c1a4af5e45c8aedb
+    scopes: []                       # authenticated but not entitled to any agent
