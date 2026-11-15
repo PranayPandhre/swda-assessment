@@ -1,4 +1,4 @@
-# SWDA ML/AI Engineer take-home
+# SWDA ML/AI Engineer
 
 Two parts, one repo, one command: **`make all`** (creates a venv, installs, runs all tests, both evaluation gates and both demos).
 
