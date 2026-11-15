@@ -2,15 +2,16 @@
 from __future__ import annotations
 
 import json
-import subprocess
+import subprocess  # nosec B404 - used only to launch our own MCP server as a child process
 import sys
 
 
 class StdioMcpClient:
     def __init__(self, env: dict, cmd: list[str] | None = None):
-        self._p = subprocess.Popen(cmd or [sys.executable, "-m", "swda_agent_gateway.cli", "serve-stdio"],
-                                   stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
-                                   text=True, env=env)
+        self._p = subprocess.Popen(  # nosec B603 - fixed argv list, no shell, no user-supplied command
+            cmd or [sys.executable, "-m", "swda_agent_gateway.cli", "serve-stdio"],
+            stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
+            text=True, env=env)
         self._id = 0
 
     def request(self, method: str, params: dict | None = None) -> dict:
